@@ -1,0 +1,92 @@
+* using log directory 'C:/Users/Clara/Desktop/Advanced R/lab4/AdvancedR_lab4/lab4.Rcheck'
+* using R version 3.2.2 (2015-08-14)
+* using platform: x86_64-w64-mingw32 (64-bit)
+* using session charset: ISO8859-1
+* checking for file 'lab4/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'lab4' version '1.0'
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking whether package 'lab4' can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+prepare_Rd: lab4-package.Rd:28: All text must be in a section
+prepare_Rd: lab4-package.Rd:29: All text must be in a section
+prepare_Rd: lab4-package.Rd:30: All text must be in a section
+prepare_Rd: lab4-package.Rd:31: All text must be in a section
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... WARNING
+Unknown package '<pkg>' in Rd xrefs
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... WARNING
+Warnung: Parse-Fehler in Datei 'lab4-Ex.R':
+21:11: unerwartetes Symbol
+20: 
+21: ~~ simple examples
+              ^
+* checking examples ... ERROR
+Running examples in 'lab4-Ex.R' failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: lab4-package
+> ### Title: Linear regression
+> ### Aliases: lab4-package lab4
+> ### Keywords: package
+> 
+> ### ** Examples
+> 
+> ~~ simple examples of the most important functions ~~
+Error: unexpected symbol in "~~ simple examples"
+Execution halted
+* checking for unstated dependencies in 'tests' ... WARNING
+'library' or 'require' calls not declared from:
+  'AdvancedR_lab4' 'unit_test'
+* checking tests ... ERROR
+Running the tests in 'tests/testthat.R' failed.
+Last 13 lines of output:
+  Type 'license()' or 'licence()' for distribution details.
+  
+  R is a collaborative project with many contributors.
+  Type 'contributors()' for more information and
+  'citation()' on how to cite R or R packages in publications.
+  
+  Type 'demo()' for some demos, 'help()' for on-line help, or
+  'help.start()' for an HTML browser interface to help.
+  Type 'q()' to quit R.
+  
+  > library(unit_test)
+  Error in library(unit_test) : there is no package called 'unit_test'
+  Execution halted
+* checking PDF version of manual ... OK
+* DONE
+Status: 2 ERRORs, 4 WARNINGs

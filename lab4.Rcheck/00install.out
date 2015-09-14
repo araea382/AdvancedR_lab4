@@ -1,0 +1,14 @@
+* installing *source* package 'lab4' ...
+** R
+** preparing package for lazy loading
+** help
+Warnung: C:/Users/Clara/AppData/Local/Temp/RtmpeyfmrQ/Rbuild1afd82f1b6086/lab4/man/lab4-package.Rd:28: All text must be in a section
+Warnung: C:/Users/Clara/AppData/Local/Temp/RtmpeyfmrQ/Rbuild1afd82f1b6086/lab4/man/lab4-package.Rd:29: All text must be in a section
+Warnung: C:/Users/Clara/AppData/Local/Temp/RtmpeyfmrQ/Rbuild1afd82f1b6086/lab4/man/lab4-package.Rd:30: All text must be in a section
+Warnung: C:/Users/Clara/AppData/Local/Temp/RtmpeyfmrQ/Rbuild1afd82f1b6086/lab4/man/lab4-package.Rd:31: All text must be in a section
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+*** arch - i386
+*** arch - x64
+* DONE (lab4)
