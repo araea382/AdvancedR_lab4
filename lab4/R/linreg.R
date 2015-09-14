@@ -1,9 +1,8 @@
 linreg <- function(formula, data){
     X <- model.matrix(formula, data)
 
-    ##dependent variable
-    #don't knoww~
-    #y <- all.vars(expression(formula))
+    #like this maybe? takes all the arguments that are not and therefore in the X matrix
+    y <- all.vars(formula)[!(all.vars(formula) %in% colnames(X))]
     
     Q <- qr.Q(qr(X))
     R <- qr.R(qr(X))
