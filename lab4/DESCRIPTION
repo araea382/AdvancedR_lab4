@@ -1,0 +1,10 @@
+Package: lab4
+Type: Package
+Title: Linear regression
+Version: 1.0
+Date: 2015-09-14
+Author: Clara Schartner and Araya Eamrurksiri
+Maintainer: Clara Schartner <Clara.schartner@gmail.com>
+Description: Calculate the linear regression.
+License: GPL-3
+LazyData: true
