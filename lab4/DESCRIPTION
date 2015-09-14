@@ -8,3 +8,4 @@ Maintainer: Clara Schartner <Clara.schartner@gmail.com>
 Description: Calculate the linear regression.
 License: GPL-3
 LazyData: true
+Suggests: testthat
