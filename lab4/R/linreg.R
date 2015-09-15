@@ -8,10 +8,35 @@ linreg <- function(formula, data){
     R <- qr.R(qr(X))
     
     ans <- solve(R) %*% t(Q) %*% y
-    ans<-structure(list(ans), class = "linreg")
+    beta<-ans
+    #the fitted values 
+    fit <- X %*% beta
     
-    return(ans)
+    #the residuals
+    res <- y - fit
+    
+    #the degree of freedoms
+    n <- nrow(X)
+    p <- ncol(X)
+    df <- n - p
+    
+    #the residual variance
+    var_res <- as.vector((t(res) %*% res) / df)
+    
+    ans<-structure(ans, class = "linreg")
+    
+    #below other option which includes the formula, however as a list.
+    print.linreg <- function(ans) {
+      cat(colnames(X),"\n")
+      cat(ans[1:2],"\n")
+#cat("linreg(",as.call(as.list(formula)),")","\n") #cannot get it to print the formula
+    }
+    
+    print.linreg(ans)
 }
+
+
+
 
 linreg <- structure(list(), class = "linreg")
 ##Test outside the function with faithful data
@@ -43,3 +68,11 @@ df <- n - p
 #the residual variance
 var_res <- as.vector((t(res) %*% res) / df)
 
+
+#or else
+
+print.linreg <- function(ans) {
+  a<-list(Coeff=c(ans[[1]][1:ncol(X)]),formul=print(formula))
+  names(a$Coeff)=colnames(X)
+  a}
+print.linreg(ans)
