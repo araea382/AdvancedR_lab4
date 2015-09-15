@@ -1,3 +1,5 @@
+library(ggplot2)
+
 linreg <- function(formula, data){
     X <- model.matrix(formula, data)
 
@@ -14,7 +16,8 @@ linreg <- function(formula, data){
     
     #the residuals
     res <- y - fit
-    
+    fit.res<-data.frame(fit,res)
+    names(fit.res)<-c("fit","res")
     #the degree of freedoms
     n <- nrow(X)
     p <- ncol(X)
@@ -35,7 +38,7 @@ linreg <- function(formula, data){
     print.linreg(ans)
 }
 
-
+p<-ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+ add_cat()
 
 
 linreg <- structure(list(), class = "linreg")
