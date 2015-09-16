@@ -1,13 +1,13 @@
 library(ggplot2)
-<<<<<<< HEAD
+
 #instead of stop if not function, add that it converts it into dummy variables
-=======
+
 
 linreg <- function(x, ...){
     UseMethod("linreg")
 }
 
->>>>>>> e3e5116f9c5e18ec6e0d5d646712598f7eba586e
+
 linreg <- function(formula, data){
     X <- model.matrix(formula, data)
     y <- as.matrix(data[all.vars(formula)[!(all.vars(formula) %in% colnames(X))]])
@@ -34,13 +34,13 @@ linreg <- function(formula, data){
       ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()
       }
     plot(fit.res)
-=======
+
     res <- as.vector(res)
     
     fit.res <- data.frame(fit, res)
     names(fit.res) <- c("fit", "res")
     
->>>>>>> e3e5116f9c5e18ec6e0d5d646712598f7eba586e
+
     #the degree of freedoms
     n <- nrow(X)
     p <- ncol(X)
@@ -79,19 +79,19 @@ print.linreg <- function(x, ...){
     print(x$coefficients)
 }
 
-<<<<<<< HEAD
+
 
 
 linreg <- structure(list(), class = "linreg")
 ##Test outside the function with faithful data
 X <- model.matrix(eruptions~waiting, data = faithful)
 y <- as.matrix(faithful[,1, drop = FALSE])
-=======
+
 #not finished
 plot.linreg <- function(x, ...){
     
 }
->>>>>>> e3e5116f9c5e18ec6e0d5d646712598f7eba586e
+
 
 resid.linreg <- function(x, ...){
     return(res)
