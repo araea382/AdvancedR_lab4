@@ -1,11 +1,11 @@
 library(ggplot2)
-
+#instead of stop if not function, add that it converts it into dummy variables
 linreg <- function(formula, data){
     X <- model.matrix(formula, data)
 
     #like this maybe? takes all the arguments that are not and therefore in the X matrix
     y <- as.matrix(data[all.vars(formula)[!(all.vars(formula) %in% colnames(X))]])
-    
+    stopifnot(is.numeric(y)&is.numeric(X))
     Q <- qr.Q(qr(X))
     R <- qr.R(qr(X))
     
@@ -18,6 +18,12 @@ linreg <- function(formula, data){
     res <- y - fit
     fit.res<-data.frame(fit,res)
     names(fit.res)<-c("fit","res")
+    #not working, need to get ggplot to work with new class
+    fit.res <- structure(data.frame(), class = "linreg")
+    plot.linreg<-function(fit.res){
+      ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()
+      }
+    plot(fit.res)
     #the degree of freedoms
     n <- nrow(X)
     p <- ncol(X)
@@ -38,7 +44,6 @@ linreg <- function(formula, data){
     print.linreg(ans)
 }
 
-p<-ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+ add_cat()
 
 
 linreg <- structure(list(), class = "linreg")
