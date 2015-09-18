@@ -1,6 +1,6 @@
-library(ggplot2)
 
-#instead of stop if not function, add that it converts it into dummy variables
+
+
 
 
 linreg <- function(x, ...){
@@ -9,6 +9,7 @@ linreg <- function(x, ...){
 
 
 linreg <- function(formula, data){
+  library(ggplot2)
     X <- model.matrix(formula, data)
     y <- as.matrix(data[all.vars(formula)[!(all.vars(formula) %in% colnames(X))]])
     stopifnot(is.numeric(y)&is.numeric(X))
@@ -25,15 +26,13 @@ linreg <- function(formula, data){
     
     #the residuals
     res <- y - fit
-<<<<<<< HEAD
+
     fit.res<-data.frame(fit,res)
+    #not working if class is linreg
+  # class(fit.res) <- "linreg"
     names(fit.res)<-c("fit","res")
-    #not working, need to get ggplot to work with new class
-    fit.res <- structure(data.frame(), class = "linreg")
-    plot.linreg<-function(fit.res){
-      ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()
-      }
-    plot(fit.res)
+    
+    
 
     res <- as.vector(res)
     
@@ -72,6 +71,12 @@ linreg <- function(formula, data){
     return(a)    
 }
     
+
+
+
+
+
+
 print.linreg <- function(x, ...){
     cat("Call:\n")
     print(x$call)
@@ -87,11 +92,10 @@ linreg <- structure(list(), class = "linreg")
 X <- model.matrix(eruptions~waiting, data = faithful)
 y <- as.matrix(faithful[,1, drop = FALSE])
 
-#not finished
-plot.linreg <- function(x, ...){
-    
-}
 
+plot.linreg <- function(x, ...){
+  ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()
+}
 
 resid.linreg <- function(x, ...){
     return(res)
@@ -126,7 +130,7 @@ summary.linreg <- function(x, ...){
     print.linreg(ans)
 }
 
-p <- ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+ add_cat()
+
 
 
 #or else
