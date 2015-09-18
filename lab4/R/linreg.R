@@ -94,7 +94,8 @@ y <- as.matrix(faithful[,1, drop = FALSE])
 
 
 plot.linreg <- function(x, ...){
-  ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()
+  ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red")
+  ggplot(data=fit.res,aes(x=fit,y=sqrt(abs(res))))+geom_point()+geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red")
 }
 
 resid.linreg <- function(x, ...){
