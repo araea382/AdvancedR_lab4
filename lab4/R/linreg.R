@@ -94,9 +94,14 @@ y <- as.matrix(faithful[,1, drop = FALSE])
 
 
 plot.linreg <- function(x, ...){
-  ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red")
-  ggplot(data=fit.res,aes(x=fit,y=sqrt(abs(res))))+geom_point()+geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red")
-}
+ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+
+    geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red") + 
+    xlab("fitted values") + ylab("residuals") + ggtitle("Residuals vs. Fitted")
+ ggplot(data=fit.res,aes(x=fit,y=sqrt(abs(res))))+geom_point()+
+   geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red") + 
+ xlab("fitted values") + ylab(expression(paste(sqrt("Standardized residuals")))) + ggtitle("Scale−Location")
+
+ }
 
 resid.linreg <- function(x, ...){
     return(res)
