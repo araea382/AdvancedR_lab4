@@ -104,7 +104,7 @@ ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+
  xlab(x$call) + ylab(expression(paste(sqrt("Standardized residuals")))) + ggtitle("Scale−Location")
 
  }
-xlab(expression(atop("A long string of text for the purpose", paste("of illustrating my point" [reported])))
+
 resid.linreg <- function(x, ...){
     return(res)
 }
