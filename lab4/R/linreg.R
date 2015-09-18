@@ -121,10 +121,7 @@ summary.linreg <- function(x, ...){
     print(ls)
     cat("\nResidual standard error:")
     sd_res <- sqrt(x$varres)
-    print(sd_res)
-    cat("on")
-    print(x$df)
-    cat(" degress of freedom")
+    cat(sd_res, "on", x$df, "degree of freedom")
 }
 
 ###################        
