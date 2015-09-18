@@ -75,10 +75,18 @@ linreg <- structure(list(), class = "linreg")
 X <- model.matrix(eruptions~waiting, data = faithful)
 y <- as.matrix(faithful[,1, drop = FALSE])
 
-
+#xlab is missing:fitted values 
+# http://stackoverflow.com/questions/13223846/ggplot2-two-line-label-with-expression
+#to make 2 lines
 plot.linreg <- function(x, ...){
-  ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()
-}
+ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+
+    geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red") + 
+    xlab(x$call) + ylab("residuals") + ggtitle("Residuals vs. Fitted")
+ ggplot(data=fit.res,aes(x=fit,y=sqrt(abs(res))))+geom_point()+
+   geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red") + 
+ xlab(x$call) + ylab(expression(paste(sqrt("Standardized residuals")))) + ggtitle("Scale−Location")
+
+ }
 
 resid.linreg <- function(x, ...){
     return(x$residuals)
@@ -93,10 +101,17 @@ coef.linreg <- function(x, ...){
     return(x$coefficients)
 }
 
+<<<<<<< HEAD
 summary.linreg <- function(x, ...){
     cat("Call:\n")
     print(x$call)
     
+=======
+
+   summary.linreg <- function(x, ...){
+     cat("Call:\n")
+    print(x$call) 
+>>>>>>> 03b961cd663fc5be6dc41e5c1c8424fb7ce15f89
     cat("\nCoefficients:\n")
     sd_coeff <- sqrt(x$varcoeff)
     ls <- cbind(Estimate = x$coefficients ,Std.Error = sd_coeff, t.value = x$tval, p.value = x$pval)
@@ -106,26 +121,7 @@ summary.linreg <- function(x, ...){
     cat(sd_res, "on", x$df, "degree of freedom")
 }
 
-###################        
-    ans <- structure(ans, class = "linreg")
-    
-    #below other option which includes the formula, however as a list.
-    print.linreg <- function(ans) {
-        cat(colnames(X),"\n")
-        cat(ans[1:2],"\n")
-        #cat("linreg(",as.call(as.list(formula)),")","\n") #cannot get it to print the formula
-    }
-    
-    print.linreg(ans)
-}
 
 
 
 
-#or else
-
-print.linreg <- function(ans) {
-    a<-list(Coeff=c(ans[[1]][1:ncol(X)]),formul=print(formula))
-    names(a$Coeff)=colnames(X)
-    a}
-print.linreg(ans)
