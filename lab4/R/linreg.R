@@ -51,7 +51,7 @@ linreg <- function(formula, data){
     ##can't check the answer but i think the code is quite correct
     pval <- 2*pt(-abs(tval), df)
     
-    a <- list(coefficients = beta, fitted = fit, residuals = res, varcoeff = var_coeff, tvalues = tval, pvalues = pval, df = df)
+    a <- list(coefficients = beta, fitted = fit, residuals = res, varres = var_res, varcoeff = var_coeff, tvalues = tval, pvalues = pval, df = df)
     a$call <- match.call()
     class(a) <- "linreg"
     return(a)    
@@ -82,11 +82,21 @@ coef.linreg <- function(x, ...){
     return(x$coefficients)
 }
 
-#not finished
+#need to fix the format of the residual and df
 summary.linreg <- function(x, ...){
     cat("Call:\n")
     print(x$call)
     
+    cat("\nCoefficients:\n")
+    sd_coeff <- sqrt(x$varcoeff)
+    ls <- cbind(Estimate = x$coefficients ,Std.Error = sd_coeff, t.value = x$tval, p.value = x$pval)
+    print(ls)
+    cat("\nResidual standard error:")
+    sd_res <- sqrt(x$varres)
+    print(sd_res)
+    cat("on")
+    print(x$df)
+    cat(" degress of freedom")
 }
 
 ###################        
