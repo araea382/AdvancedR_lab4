@@ -1,13 +1,18 @@
-library(ggplot2)
+
+
+
+
 
 linreg <- function(x, ...){
     UseMethod("linreg")
 }
 
+
 linreg <- function(formula, data){
+  library(ggplot2)
     X <- model.matrix(formula, data)
     y <- as.matrix(data[all.vars(formula)[!(all.vars(formula) %in% colnames(X))]])
-    
+    stopifnot(is.numeric(y)&is.numeric(X))
     Q <- qr.Q(qr(X))
     R <- qr.R(qr(X))
     
@@ -21,11 +26,20 @@ linreg <- function(formula, data){
     
     #the residuals
     res <- y - fit
+
+    fit.res<-data.frame(fit,res)
+    #not working if class is linreg
+  # class(fit.res) <- "linreg"
+    names(fit.res)<-c("fit","res")
+    
+    
+
     res <- as.vector(res)
     
     fit.res <- data.frame(fit, res)
     names(fit.res) <- c("fit", "res")
     
+
     #the degree of freedoms
     n <- nrow(X)
     p <- ncol(X)
@@ -57,6 +71,12 @@ linreg <- function(formula, data){
     return(a)    
 }
     
+
+
+
+
+
+
 print.linreg <- function(x, ...){
     cat("Call:\n")
     print(x$call)
@@ -64,9 +84,17 @@ print.linreg <- function(x, ...){
     print(x$coefficients)
 }
 
-#not finished
+
+
+
+linreg <- structure(list(), class = "linreg")
+##Test outside the function with faithful data
+X <- model.matrix(eruptions~waiting, data = faithful)
+y <- as.matrix(faithful[,1, drop = FALSE])
+
+
 plot.linreg <- function(x, ...){
-    
+  ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()
 }
 
 resid.linreg <- function(x, ...){
@@ -112,7 +140,7 @@ summary.linreg <- function(x, ...){
     print.linreg(ans)
 }
 
-p <- ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+ add_cat()
+
 
 
 #or else
