@@ -92,17 +92,19 @@ linreg <- structure(list(), class = "linreg")
 X <- model.matrix(eruptions~waiting, data = faithful)
 y <- as.matrix(faithful[,1, drop = FALSE])
 
-
+#xlab is missing:fitted values 
+# http://stackoverflow.com/questions/13223846/ggplot2-two-line-label-with-expression
+#to make 2 lines
 plot.linreg <- function(x, ...){
 ggplot(data=fit.res,aes(x=fit,y=res))+geom_point()+
     geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red") + 
-    xlab("fitted values") + ylab("residuals") + ggtitle("Residuals vs. Fitted")
+    xlab(x$call) + ylab("residuals") + ggtitle("Residuals vs. Fitted")
  ggplot(data=fit.res,aes(x=fit,y=sqrt(abs(res))))+geom_point()+
    geom_smooth(method = "loess", formula = y ~ x,se=FALSE, colour = "red") + 
- xlab("fitted values") + ylab(expression(paste(sqrt("Standardized residuals")))) + ggtitle("Scale−Location")
+ xlab(x$call) + ylab(expression(paste(sqrt("Standardized residuals")))) + ggtitle("Scale−Location")
 
  }
-
+xlab(expression(atop("A long string of text for the purpose", paste("of illustrating my point" [reported])))
 resid.linreg <- function(x, ...){
     return(res)
 }
