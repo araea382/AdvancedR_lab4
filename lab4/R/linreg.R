@@ -1,12 +1,6 @@
-
-
-
-
-
 linreg <- function(x, ...){
     UseMethod("linreg")
 }
-
 
 linreg <- function(formula, data){
   library(ggplot2)
@@ -32,13 +26,10 @@ linreg <- function(formula, data){
   # class(fit.res) <- "linreg"
     names(fit.res)<-c("fit","res")
     
-    
-
     res <- as.vector(res)
     
     fit.res <- data.frame(fit, res)
     names(fit.res) <- c("fit", "res")
-    
 
     #the degree of freedoms
     n <- nrow(X)
@@ -70,12 +61,6 @@ linreg <- function(formula, data){
     class(a) <- "linreg"
     return(a)    
 }
-    
-
-
-
-
-
 
 print.linreg <- function(x, ...){
     cat("Call:\n")
@@ -83,8 +68,6 @@ print.linreg <- function(x, ...){
     cat("\nCoefficients:\n")
     print(x$coefficients)
 }
-
-
 
 
 linreg <- structure(list(), class = "linreg")
@@ -98,19 +81,18 @@ plot.linreg <- function(x, ...){
 }
 
 resid.linreg <- function(x, ...){
-    return(res)
+    return(x$residuals)
 }
 
 #???
 pred.linreg <- function(x, ...){
-    return(fit)
+    return(x$fitted)
 }
 
 coef.linreg <- function(x, ...){
     return(x$coefficients)
 }
 
-#need to fix the format of the residual and df
 summary.linreg <- function(x, ...){
     cat("Call:\n")
     print(x$call)
