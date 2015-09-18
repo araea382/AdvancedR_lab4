@@ -111,9 +111,9 @@ coef.linreg <- function(x, ...){
 }
 
 
-      summary.linreg <- function(x, ...){
-        cat("Call:\n")
-        print(x$call) 
+   summary.linreg <- function(x, ...){
+     cat("Call:\n")
+    print(x$call) 
     cat("\nCoefficients:\n")
     sd_coeff <- sqrt(x$varcoeff)
     ls <- cbind(Estimate = x$coefficients ,Std.Error = sd_coeff, t.value = x$tval, p.value = x$pval)
