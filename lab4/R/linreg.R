@@ -114,29 +114,18 @@ coef.linreg <- function(x, ...){
 summary.linreg <- function(x, ...){
     cat("Call:\n")
     print(x$call)
-    
-}
-
-###################        
-    ans <- structure(ans, class = "linreg")
-    
-    #below other option which includes the formula, however as a list.
-    print.linreg <- function(ans) {
-        cat(colnames(X),"\n")
-        cat(ans[1:2],"\n")
-        #cat("linreg(",as.call(as.list(formula)),")","\n") #cannot get it to print the formula
-    }
-    
-    print.linreg(ans)
+    cat("Residuals:\n")
+    print(summary(res))
+    cat("Coefficients:\n")
+    print(x$coefficients)
+    print(x$varcoeff)
+    cat("T-values:\n")
+    print(x$tvalues)
+    cat("P-values:\n")
+    print(x$pvalues)
+    cat("DF:\n")
+    print(x$df)
 }
 
 
 
-
-#or else
-
-print.linreg <- function(ans) {
-    a<-list(Coeff=c(ans[[1]][1:ncol(X)]),formul=print(formula))
-    names(a$Coeff)=colnames(X)
-    a}
-print.linreg(ans)
